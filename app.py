@@ -106,6 +106,7 @@ for user, alias in user2aliases.iteritems():
 app = Flask(__name__)
 @app.route('/slack', methods=['POST'])
 def inbound():
+    # TODO<Yavor>: Allow users to override the error handler.
     def error_message(chan, msg):
         # TODO<Yavor>: Get the actual ABBY user, instead of hard coding the values.
         image = 'https://avatars.slack-edge.com/2015-02-06/3643462404_60e8e28596e711b08950_48.jpg'
@@ -117,9 +118,11 @@ def inbound():
 
     if request.form.get('token') == WEBHOOK_SECRET:
         chan = request.form.get('channel_id')
+        # TODO<Yavor>: Allow users to override the token matching pattern.
         token = (request.form.get('text')).rsplit('?', 1)[0]
         username = token2user.get(token, token)
         u = c.users.get(username)
+        # TODO<Yavor>: Move the error messages to the settings file.
         if u is None:
             return error_message(chan, "Не познавам колегата `%s`." % username)
         user_messages = c.hist.get(u['id'])
