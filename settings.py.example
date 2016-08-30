@@ -1,0 +1,21 @@
+API_KEY = ''            # Get this from https://<teamname>.slack.com/apps/manage/custom-integrations
+WEBHOOK_SECRET = ''     # Get this from https://<teamname>.slack.com/apps/manage/custom-integrations
+HISTORY_FILE = 'msg.hist'
+PORT = 8000             # The port to run the webserver on.
+MIN_MESSAGE_COUNT = 100 # The minimum number of messages a user must have to apply for simulation.
+
+# This mapping is only over used to assign aliases to users.
+# The webhook automatically parses all slack usernames that aren't bots, so you need not add them to this list.
+# Aliases are nice when the username is too cumbersome for conversation, ex: first_name.last_name
+#
+# The mapping follows the format <slack_username>: <aliases>
+# - slack_username: The token one would use to mention the user in the channel; @username becomes 'username'.
+# - aliases: Either a string or a list of strings.
+#
+# In the example below, the user @alfred.pennyworth can be simulated by tying 'alfred?' in a public channel.
+# The user @brucewayne can be simulated by either 'bruce?' or 'batman?'
+# Although the user @the_joker is not included in the mapping, he can be simulated with 'the_joker?'.
+user2aliases = {
+    'alfred.pennyworth': 'alfred',
+    'brucewayne':        ['bruce', 'batman'],
+}
