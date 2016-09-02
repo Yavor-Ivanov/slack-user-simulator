@@ -106,6 +106,12 @@ for user, alias in user2aliases.iteritems():
 app = Flask(__name__)
 @app.route('/slack', methods=['POST'])
 def inbound():
+    # TODO<Yavor>: Allow users to override the token matching pattern.
+    def get_user_from_token(msg):
+        token = msg.rsplit('?', 1)[0]
+        username = token2user.get(token, token)
+        return c.users.get(username)
+
     # TODO<Yavor>: Allow users to override the error handler.
     def error_message(chan, msg):
         # TODO<Yavor>: Get the actual ABBY user, instead of hard coding the values.
@@ -118,10 +124,7 @@ def inbound():
 
     if request.form.get('token') == WEBHOOK_SECRET:
         chan = request.form.get('channel_id')
-        # TODO<Yavor>: Allow users to override the token matching pattern.
-        token = (request.form.get('text')).rsplit('?', 1)[0]
-        username = token2user.get(token, token)
-        u = c.users.get(username)
+        u = get_user_from_token(request.form.get('text'))
         # TODO<Yavor>: Move the error messages to the settings file.
         if u is None:
             return error_message(chan, "Не познавам колегата `%s`." % username)
@@ -129,11 +132,13 @@ def inbound():
         if len(user_messages) < MIN_MESSAGE_COUNT:
             return error_message(chan, "`%s` има < 50 съобщения." % username)
         # TODO<Yavor>: Detect giphy commands and pull a url.
-        # TODO<Yavor>: Add protection from token recursion.
-        s.chat.post_message(chan, random.choice(user_messages),
-                            username=u['profile']['real_name'],
-                            as_user=False,
-                            icon_url=u['profile']['image_48'])
+        while True:
+            msg = random.choice(user_messages)
+            if get_user_from_token(msg) is None:
+                s.chat.post_message(chan, msg, as_user=False,
+                                    username=u['profile']['real_name'],
+                                    icon_url=u['profile']['image_48'])
+                break
     return Response(), 200
 
 
