@@ -28,7 +28,7 @@ Mako==1.0.0
 MarkupSafe==0.23
 mock==1.0.1
 ndg-httpsclient==0.3.2
-paramiko==1.16.0
+paramiko==2.0.9
 pathlib==1.0.1
 Pillow==2.6.1
 ply==3.4
