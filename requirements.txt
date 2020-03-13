@@ -43,7 +43,7 @@ pydot==1.0.32
 Pygments==2.0.1
 pyinotify==0.9.4
 PyOpenGL==3.0.2
-pyOpenSSL==0.14
+pyOpenSSL==17.5.0
 pyparsing==2.0.3
 Pyrex==0.9.8.5
 Pyste==0.9.10
