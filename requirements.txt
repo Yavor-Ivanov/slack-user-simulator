@@ -74,6 +74,6 @@ virtualenv-clone==0.2.5
 virtualenvwrapper==4.3.1
 vobject==0.8.1rc0
 websocket-client==0.34.0
-Werkzeug==0.9.6
+Werkzeug==0.15.3
 xlwt==0.7.5
 ZSI==2.1a1
