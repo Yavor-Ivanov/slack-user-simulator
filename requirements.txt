@@ -33,7 +33,7 @@ pathlib==1.0.1
 Pillow==2.6.1
 ply==3.4
 praw==3.3.0
-psutil==2.1.1
+psutil==5.6.6
 psycopg2==2.5.4
 pyasn1==0.1.9
 PyChart==1.39
