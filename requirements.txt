@@ -21,7 +21,7 @@ gyp==0.1
 html5lib==0.999
 idna==2.0
 ipaddress==1.0.16
-Jinja2==2.7.3
+Jinja2==2.11.3
 kitchen==1.2.4
 lxml==3.4.0
 Mako==1.0.0
