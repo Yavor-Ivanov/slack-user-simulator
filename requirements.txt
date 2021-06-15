@@ -62,7 +62,7 @@ simplejson==3.6.5
 singledispatch==3.4.0.3
 six==1.10.0
 stevedore==0.14.1
-thefuck==3.9
+thefuck==3.31
 tornado==4.3
 unittest2==0.5.1
 update-checker==0.11
