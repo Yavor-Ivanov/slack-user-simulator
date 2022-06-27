@@ -55,7 +55,7 @@ pytz==2012rc0
 PyWebDAV==0.9.8
 PyYAML==5.1
 ranger==1.6.1
-reportlab==3.1.8
+reportlab==3.5.55
 requests==2.20.0
 roman==2.0.0
 simplejson==3.6.5
